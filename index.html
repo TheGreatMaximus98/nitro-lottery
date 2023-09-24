@@ -1,0 +1,57 @@
+
+<html>
+    <head>
+        <style>
+            .title {
+                font-family: sans-serif;
+                text-align: center;
+            }
+            .main-container {
+                user-select: none;
+                background-color: #D6D000;
+                width: 23px;
+                height: 23px;
+                padding: 20px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            var getJSON = function(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'json';
+                xhr.onload = function() {
+                  var status = xhr.status;
+                  if (status === 200) {
+                    callback(null, xhr.response);
+                  } else {
+                    callback(status, xhr.response);
+                  }
+                };
+                xhr.send();
+            }
+            function run(){
+                if ((Math.floor(Math.random() * 50) + 1) == 50){
+                    alert("You won contact us to recive your prize!")
+                    let usr = prompt("Nitrotype user?")
+                    let apiUri = "https://api.hashify.net/hash/md4/hex?value="+"API_KEY "+usr
+                    $.getJSON(apiUri, function(data, err) {
+                      window.open("mailto:maximusjdhalloran@gmail.com?subject=I%20won!&body="+encodeURIComponent("PIN: "+data.Digest))
+                    });
+                }
+            }
+        </script>
+        <title>Nitrotype Lottery</title>
+    </head>
+    <body>
+        <h1 class="title">Nitrotype Lottery</h1>
+        <div class="main-container">
+            <div><button class="lott" onclick="run()">?</button></div>
+        </div>
+        <div class="result-container">
+            <h2>Money Earned: </h2>
+        </div>
+    </body>
+</html>
