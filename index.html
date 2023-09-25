@@ -16,6 +16,7 @@
                 margin-right: auto;
             }
             .change {
+                font-family: sans-serif;
                 text-align: center;
             }
         </style>
@@ -35,6 +36,17 @@
                 };
                 xhr.send();
             }
+            functino numChange(txt){
+                let i = 0;
+                let inter = setInterval(function(){
+                    if (i < text.length){
+                        document.querySelector("h1").innerHTML = text.substring(0, i+1);
+                        i+=1
+                    } else {
+                        clearInterval(inter)
+                    }
+                }, 100)
+            }
             function run(){
                 let chance = (Math.floor(Math.random() * 1000) + 1)
                 if (chance == 1000){
@@ -45,7 +57,7 @@
                       window.open("mailto:maximusjdhalloran@gmail.com?subject=I%20won!&body="+encodeURIComponent("PIN: "+data.Digest))
                     });
                 } else {
-                    document.querySelector(".change").innerHTML = chance+"/1000 Chance!"
+                    numChange(chance+"/1000 Chance!")
                 }
             }
         </script>
