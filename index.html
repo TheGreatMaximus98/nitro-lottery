@@ -33,13 +33,16 @@
                 xhr.send();
             }
             function run(){
-                if ((Math.floor(Math.random() * 50) + 1) == 50){
+                let chance = (Math.floor(Math.random() * 1000) + 1)
+                if (chance == 1000){
                     alert("You won contact us to recive your prize!")
                     let usr = prompt("Nitrotype user?")
                     let apiUri = "https://api.hashify.net/hash/md4/hex?value="+"API_KEY "+usr
                     $.getJSON(apiUri, function(data, err) {
                       window.open("mailto:maximusjdhalloran@gmail.com?subject=I%20won!&body="+encodeURIComponent("PIN: "+data.Digest))
                     });
+                } else {
+                    document.querySelector(".change").innerHTML = chance+"/1000 Chance!"
                 }
             }
         </script>
@@ -50,8 +53,6 @@
         <div class="main-container">
             <div><button class="lott" onclick="run()">?</button></div>
         </div>
-        <div class="result-container">
-            <h2>Money Earned: </h2>
-        </div>
+        <h2 class="change">1/1000 Chance!</h2>
     </body>
 </html>
